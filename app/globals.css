@@ -1,26 +1,299 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f5f4f0;
+  --foreground: #0f0f0e;
+  --surface: #f5f4f0;
+  --muted: #6b6b65;
+  --accent: #0048ff;
+  --border: #e5e4e0;
+}
+
+.dark {
+  --background: #0c0c0b;
+  --foreground: #f5f4f0;
+  --surface: #141413;
+  --muted: #9b9b93;
+  --accent: #316bff;
+  --border: #262625;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+  --font-display: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-display), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--background);
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes reveal-left {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes draw-line {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.anim-fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.anim-fade-up.is-visible {
+  animation: reveal-up 0.7s ease-out forwards;
+}
+
+.anim-reveal {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.anim-reveal.is-visible {
+  animation: reveal-left 0.6s ease-out forwards;
+}
+
+.stagger-1 {
+  animation-delay: 0.05s;
+}
+.stagger-2 {
+  animation-delay: 0.15s;
+}
+.stagger-3 {
+  animation-delay: 0.25s;
+}
+.stagger-4 {
+  animation-delay: 0.35s;
+}
+.stagger-5 {
+  animation-delay: 0.45s;
+}
+
+.section-line {
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.section-line.is-visible {
+  animation: draw-line 0.8s ease-out forwards;
+}
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transition: transform 0.1s ease;
+}
+
+.cursor-ring {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--foreground);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transition:
+    transform 0.25s ease,
+    width 0.3s ease,
+    height 0.3s ease;
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.25s ease;
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.btn-spin {
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s ease;
+}
+
+.btn-spin::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  z-index: 0;
+}
+
+.btn-spin:hover::before {
+  transform: translateY(0);
+}
+
+.btn-spin span {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-spin:hover {
+  color: var(--background);
+}
+
+.hover-lift {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px -10px var(--foreground);
+}
+
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease;
+}
+
+.project-card {
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px) rotateX(2deg);
+}
+
+.tag-rotate {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.tag-rotate:hover {
+  transform: rotate(-2deg) scale(1.05);
+}
+
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-content {
+  display: inline-flex;
+  animation: marquee 30s linear infinite;
+}
+
+.experience-dot {
+  box-shadow:
+    0 0 0 4px var(--background),
+    0 0 0 6px var(--foreground);
+}
+
+.skill-bar {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.is-visible .skill-bar,
+.skill-bar.is-visible {
+  transform: scaleX(1);
+}
+
+#hero {
+  background: linear-gradient(to bottom right, #ffffff, #f5f4f0, #edecea);
+}
+
+.dark #hero {
+  background: linear-gradient(to bottom right, #0c0c0b, #121210, #0c0c0b);
 }
