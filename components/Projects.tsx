@@ -7,22 +7,46 @@ const projects = [
     title: "Legends Update",
     description:
       "Mobile Legends human-driven updates information website made by me and maintained by one of my friends.",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "MongoDB", "UploadThing", "React"],
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "MongoDB",
+      "UploadThing",
+      "React",
+    ],
     link: "https://legends-update.vercel.app/",
     status: "live",
     year: 2025,
     featured: true,
-  }, {
+  },
+  {
     title: "Room Management",
     description:
       "Room management system with booking queue and approval from administrative roles.",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "MongoDB", "React", "Redis"],
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "MongoDB",
+      "React",
+      "Redis",
+    ],
     link: "https://room-management-eta.vercel.app/",
     status: "live",
     year: 2026,
     featured: true,
   },
-
+  {
+    title: "Muffin Datastore",
+    description:
+      "Datastore plugin for a minecraft server that needs their player data to be uploaded into MongoDB database.",
+    tags: ["Java", "Spigot", "MongoDB"],
+    link: "https://github.com/mvfflin/muffin-datastore/",
+    status: "live",
+    year: 2025,
+    featured: true,
+  },
 ];
 
 export default function Projects() {
