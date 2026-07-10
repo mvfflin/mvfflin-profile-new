@@ -6,6 +6,7 @@ import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
 import Contact from "@/components/Contact";
 import CustomCursor from "@/components/CustomCursor";
+import ConsoleDrawer from "@/components/ConsoleDrawer";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
         <Experience />
         <Contact />
       </main>
+      <ConsoleDrawer />
     </>
   );
 }

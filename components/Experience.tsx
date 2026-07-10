@@ -1,6 +1,7 @@
 "use client";
 
 import ScrollReveal from "@/components/ScrollReveal";
+import TypewriterText from "@/components/TypewriterText";
 
 const experiences = [
   {
@@ -14,10 +15,10 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-32 bg-surface">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section id="experience" className="py-20 bg-surface">
+      <div className="max-w-5xl mx-auto px-6 lg:px-8">
         <ScrollReveal>
-          <div className="flex items-center gap-3 mb-6">
+          <div className="flex items-center gap-3 mb-4">
             <div className="h-px w-12 bg-accent"></div>
             <p className="text-xs font-semibold tracking-[0.3em] uppercase text-muted">
               Experiences
@@ -27,12 +28,14 @@ export default function Experience() {
 
         <ScrollReveal delay={100}>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-4 leading-tight">
-            My journey<span className="text-accent">.</span>
+            <TypewriterText text="My journey" speed={50} delay={200}>
+              <span className="text-accent">.</span>
+            </TypewriterText>
           </h2>
         </ScrollReveal>
 
         <ScrollReveal delay={200}>
-          <p className="text-base text-muted mb-20 max-w-xl">
+          <p className="text-base text-muted mb-12 max-w-xl">
             Every role that i have taken before and currently has contributed to
             my growth.
           </p>
@@ -42,7 +45,7 @@ export default function Experience() {
           <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-border via-border to-transparent transform -translate-x-1/2"></div>
           <div className="hidden md:block absolute left-1/2 top-0 w-px h-32 bg-gradient-to-b from-accent/60 to-transparent transform -translate-x-1/2"></div>
 
-          <div className="space-y-16 md:space-y-20">
+          <div className="space-y-10 md:space-y-12">
             {experiences.map((exp, index) => (
               <ScrollReveal key={index} delay={index * 150}>
                 <div
@@ -52,7 +55,7 @@ export default function Experience() {
                     className={`w-full md:w-5/12 ${index % 2 === 0 ? "md:text-right md:pr-16" : "md:text-left md:pl-16"}`}
                   >
                     <div className="group relative">
-                      <div className="p-8 bg-background border border-border rounded-2xl hover:border-muted/40 transition-all duration-500 hover:shadow-[0_0_40px_-20px_rgba(0,0,0,0.3)] dark:hover:shadow-[0_0_60px_-20px_rgba(255,255,255,0.08)]">
+                      <div className="p-6 bg-background border border-border rounded-2xl hover:border-muted/40 transition-all duration-500 hover:shadow-[0_0_40px_-20px_rgba(0,0,0,0.3)] dark:hover:shadow-[0_0_60px_-20px_rgba(255,255,255,0.08)]">
                         <div
                           className={`flex items-center gap-3 mb-4 ${index % 2 === 0 ? "md:justify-end" : ""}`}
                         >

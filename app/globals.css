@@ -297,3 +297,67 @@ html {
 .dark #hero {
   background: linear-gradient(to bottom right, #0c0c0b, #121210, #0c0c0b);
 }
+
+/* Hero silhouette */
+.hero-silhouette {
+  opacity: 0.08;
+  animation: silhouette-float 8s ease-in-out infinite;
+}
+
+.dark .hero-silhouette {
+  opacity: 0.08;
+}
+
+@keyframes silhouette-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* Typewriter animation */
+.typewriter-text {
+  font-family: "Consolas", "Monaco", "Courier New", monospace;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: var(--accent);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink-cursor 0.75s step-end infinite;
+}
+
+.typewriter-cursor.typing {
+  animation: none;
+  opacity: 1;
+}
+
+@keyframes blink-cursor {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* View Transitions API for Theme Toggle */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Ensure the new view expands over the old view */
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 2;
+}
+

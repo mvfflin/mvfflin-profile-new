@@ -4,18 +4,17 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 
 type ConsoleEntry = {
   id: number;
-  type: 'log' | 'error' | 'warn';
+  type: 'log' | 'error' | 'warn' | 'success';
   message: string;
   timestamp: number;
 };
 
 const INITIAL_LOGS: ConsoleEntry[] = [
   { id: 1, type: 'log', message: '💡 Welcome to the Portfolio Console!', timestamp: Date.now() },
-  { id: 2, type: 'log', message: 'Loaded 7 components successfully', timestamp: Date.now() },
-  { id: 3, type: 'log', message: 'Dark mode ready ✓', timestamp: Date.now() },
-  { id: 4, type: 'warn', message: 'Network: Slow connection detected', timestamp: Date.now() },
-  { id: 5, type: 'log', message: 'All systems operational', timestamp: Date.now() },
-  { id: 6, type: 'error', message: '⚠ No critical errors found', timestamp: Date.now() },
+  { id: 2, type: 'success', message: 'Loaded components successfully', timestamp: Date.now() },
+  { id: 3, type: 'success', message: 'Dark mode ready ✓', timestamp: Date.now() },
+  { id: 4, type: 'log', message: 'Establishing secure connection...', timestamp: Date.now() },
+  { id: 5, type: 'success', message: 'Connection established. All systems operational 🚀', timestamp: Date.now() },
 ];
 
 export default function ConsoleDrawer() {
@@ -24,56 +23,17 @@ export default function ConsoleDrawer() {
   const [command, setCommand] = useState('');
   const [isCompiling, setIsCompiling] = useState(false);
   const [compileProgress, setCompileProgress] = useState(0);
-  const corsCheckedRef = useRef(false);
-  const errorAddedRef = useRef(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const addLog = useCallback((entry: ConsoleEntry) => {
     setLogs((prev) => [entry, ...prev]);
   }, []);
 
   useEffect(() => {
-    if (!isOpen) return;
-    const timer = setTimeout(() => {
-      if (!corsCheckedRef.current) {
-        corsCheckedRef.current = true;
-        const styles = Array.from(document.styleSheets);
-        let hasError = false;
-        styles.forEach((sheet: CSSStyleSheet) => {
-          try {
-            Array.from(sheet.cssRules).forEach(() => {});
-          } catch {
-            hasError = true;
-          }
-        });
-        if (hasError) {
-          addLog({ id: Date.now(), type: 'warn', message: '⚠ Some CSS files blocked (CORS)', timestamp: Date.now() });
-        }
-      }
-    }, 0);
-    return () => clearTimeout(timer);
-  }, [isOpen, addLog]);
-
-  useEffect(() => {
-    if (!isOpen) return;
-    const timer = setTimeout(() => {
-      if (!errorAddedRef.current) {
-        errorAddedRef.current = true;
-        addLog({
-          id: Date.now() + 1,
-          type: 'error',
-          message: `> Error: Cannot read properties of undefined (reading '${['map', 'filter', 'reduce', 'length', 'name'][Math.floor(Math.random() * 5)]}')`,
-          timestamp: Date.now(),
-        });
-        addLog({
-          id: Date.now() + 2,
-          type: 'error',
-          message: `> TypeError at src/components/${['Home', 'Navigation', 'Button', 'Dashboard'][Math.floor(Math.random() * 4)]}.${['tsx', 'js'][Math.floor(Math.random() * 2)]}:${Math.floor(Math.random() * 200 + 1)}:${Math.floor(Math.random() * 50)}`,
-          timestamp: Date.now(),
-        });
-      }
-    }, 800);
-    return () => clearTimeout(timer);
-  }, [isOpen, addLog]);
+    if (isOpen && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -96,7 +56,7 @@ export default function ConsoleDrawer() {
         if (p >= 100) {
           clearInterval(interval);
           setIsCompiling(false);
-          addLog({ id: Date.now(), type: 'log', message: '✓ Build completed in 1.24s', timestamp: Date.now() });
+          addLog({ id: Date.now(), type: 'success', message: '✓ Build completed in 1.24s', timestamp: Date.now() });
           return 100;
         }
         return p + Math.random() * 30 + 10;
@@ -110,18 +70,31 @@ export default function ConsoleDrawer() {
     addLog({ id: Date.now(), type: 'log', message: `> ${command}`, timestamp: Date.now() });
     const cmd = command.toLowerCase().trim();
     if (cmd === 'npm run dev' || cmd === 'npm run dev -- --turbopack') {
-      addLog({ id: Date.now() + 1, type: 'log', message: 'ready - started server on http://localhost:3000', timestamp: Date.now() });
+      addLog({ id: Date.now() + 1, type: 'success', message: 'ready - started server on http://localhost:3000', timestamp: Date.now() });
       addLog({ id: Date.now() + 2, type: 'warn', message: '⚠ Could not find usage docs. Please update your next.config.js.', timestamp: Date.now() });
-      addLog({ id: Date.now() + 3, type: 'log', message: 'event - compiled client and server successfully in 603 ms (124 modules)', timestamp: Date.now() });
+      addLog({ id: Date.now() + 3, type: 'success', message: 'event - compiled client and server successfully in 603 ms (124 modules)', timestamp: Date.now() });
     } else if (cmd === 'npm install' || cmd === 'npm i') {
-      addLog({ id: Date.now() + 1, type: 'log', message: 'added 14 packages in 0.8s', timestamp: Date.now() });
+      addLog({ id: Date.now() + 1, type: 'success', message: 'added 14 packages in 0.8s', timestamp: Date.now() });
     } else if (cmd === 'npm run build') {
-      addLog({ id: Date.now() + 1, type: 'log', message: '✓ Compiled successfully', timestamp: Date.now() });
-      addLog({ id: Date.now() + 2, type: 'log', message: '✓ Generating static pages (3/3)', timestamp: Date.now() });
+      addLog({ id: Date.now() + 1, type: 'success', message: '✓ Compiled successfully', timestamp: Date.now() });
+      addLog({ id: Date.now() + 2, type: 'success', message: '✓ Generating static pages (3/3)', timestamp: Date.now() });
     } else if (cmd === 'clear' || cmd === 'cls') {
       setLogs([]);
     } else if (cmd === 'help') {
       addLog({ id: Date.now() + 1, type: 'log', message: 'Commands: npm run dev | npm install | npm run build | clear', timestamp: Date.now() });
+    
+    // --- EASTER EGGS START ---
+    // You can add more easter egg commands here!
+    } else if (cmd === 'whoami') {
+      addLog({ id: Date.now() + 1, type: 'log', message: 'Guest User (Level: Awesome Explorer)', timestamp: Date.now() });
+    } else if (cmd === 'sudo rm -rf /') {
+      addLog({ id: Date.now() + 1, type: 'error', message: 'Permission denied. You have no power here! 😉', timestamp: Date.now() });
+    } else if (cmd === 'secret') {
+      addLog({ id: Date.now() + 1, type: 'warn', message: '🥚 You found a secret easter egg! The cake is a lie.', timestamp: Date.now() });
+    } else if (cmd === 'coffee') {
+      addLog({ id: Date.now() + 1, type: 'log', message: '☕ Fetching virtual coffee... Enjoy!', timestamp: Date.now() });
+    // --- EASTER EGGS END ---
+      
     } else {
       addLog({ id: Date.now() + 1, type: 'error', message: `Command not found: ${cmd}`, timestamp: Date.now() });
     }
@@ -141,9 +114,9 @@ export default function ConsoleDrawer() {
       </button>
 
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex">
-          <div className="fixed inset-0 bg-black/50" onClick={() => setIsOpen(false)} />
-          <div className="ml-auto h-full w-full max-w-lg bg-background border-l border-border shadow-2xl flex flex-col">
+        <div className="fixed inset-0 z-[100] flex justify-end">
+          <div className="absolute inset-0 bg-black/50" onClick={() => setIsOpen(false)} />
+          <div className="relative h-full w-full max-w-lg bg-background border-l border-border shadow-2xl flex flex-col">
             <div className="flex items-center justify-between px-4 py-3 border-b border-border">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full bg-red-500" />
@@ -197,7 +170,9 @@ export default function ConsoleDrawer() {
                       ? 'text-red-500 dark:text-red-400'
                       : log.type === 'warn'
                         ? 'text-yellow-600 dark:text-yellow-400'
-                        : 'text-muted'
+                        : log.type === 'success'
+                          ? 'text-emerald-500 dark:text-emerald-400'
+                          : 'text-muted'
                   }`}
                 >
                   [{new Date(log.timestamp).toLocaleTimeString('en-US', { hour12: false })}] {log.message}
@@ -210,6 +185,7 @@ export default function ConsoleDrawer() {
               <div className="flex items-center gap-2">
                 <span className="text-green-500 font-mono text-sm">❯</span>
                 <input
+                  ref={inputRef}
                   type="text"
                   value={command}
                   onChange={(e) => setCommand(e.target.value)}
