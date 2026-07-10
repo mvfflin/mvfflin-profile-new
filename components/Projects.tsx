@@ -115,8 +115,8 @@ export default function Projects() {
                 key={tag}
                 onClick={() => setSelectedTag(tag)}
                 className={`px-4 py-2 text-xs font-semibold rounded-full transition-all duration-300 cursor-pointer ${selectedTag === tag
-                  ? "bg-accent text-background border border-accent shadow-md scale-105"
-                  : "bg-surface text-foreground/75 hover:text-foreground border border-border hover:border-muted/40"
+                  ? "bg-accent text-white shadow-md scale-105"
+                  : "bg-black/5 dark:bg-white/5 text-foreground/75 hover:text-foreground hover:bg-black/10 dark:hover:bg-white/10"
                   }`}
               >
                 {tag}
@@ -135,7 +135,7 @@ export default function Projects() {
                   rel="noopener noreferrer"
                   className="group block h-full"
                 >
-                  <div className="project-card relative bg-surface border border-border rounded-2xl hover:border-muted/40 transition-all duration-500 overflow-hidden flex flex-col h-full">
+                  <div className="project-card relative bg-surface border border-border shadow-sm hover:shadow-md rounded-2xl hover:border-accent/40 transition-all duration-500 overflow-hidden flex flex-col h-full">
                     <div className="w-full aspect-video bg-background/50 border-b border-border relative overflow-hidden group-hover:bg-background/80 transition-colors duration-500">
                       {project.image ? (
                         <img src={project.image} alt={project.title} className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700" />
@@ -184,10 +184,10 @@ export default function Projects() {
                       </p>
                       <div className="flex flex-wrap gap-2 mt-auto">
                         {project.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-3 py-1.5 text-xs font-semibold tracking-wide text-foreground bg-background border border-border rounded-lg"
-                          >
+                            <span
+                              key={tag}
+                              className="px-2.5 py-1 text-[11px] font-medium tracking-wide text-foreground bg-black/5 dark:bg-white/10 rounded-md"
+                            >
                             {tag}
                           </span>
                         ))}
@@ -222,7 +222,7 @@ export default function Projects() {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group block p-6 bg-surface/50 border border-border/60 rounded-xl opacity-60 hover:opacity-100 transition-all duration-400 hover:border-muted/40"
+                    className="group block p-6 bg-surface/50 border border-border/60 shadow-sm hover:shadow-md rounded-xl opacity-60 hover:opacity-100 transition-all duration-400 hover:border-accent/40"
                   >
                     <div className="flex items-center justify-between mb-3">
                       <h3 className="text-lg font-bold text-foreground group-hover:text-accent transition-colors duration-300">
@@ -239,7 +239,7 @@ export default function Projects() {
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-2.5 py-1 text-[11px] font-medium tracking-wide text-muted bg-background/80 border border-border/60 rounded-md"
+                          className="px-2.5 py-1 text-[11px] font-medium tracking-wide text-muted bg-black/5 dark:bg-white/5 rounded-md"
                         >
                           {tag}
                         </span>

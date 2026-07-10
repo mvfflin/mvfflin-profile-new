@@ -14,7 +14,7 @@ export default function Hero() {
         className="absolute inset-0 opacity-[0.03] dark:opacity-[0.02]"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 25% 25%, rgba(255,59,0,0.4) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(255,90,46,0.3) 0%, transparent 50%)",
+            "radial-gradient(circle at 25% 25%, rgba(99,102,241,0.4) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(99,102,241,0.3) 0%, transparent 50%)",
         }}
       />
 

@@ -75,7 +75,7 @@ export default function AboutMe() {
           <div className="grid grid-cols-2 gap-4">
             {stats.map((stat, index) => (
               <ScrollReveal key={stat.value} delay={index * 100}>
-                <div className="group p-5 lg:p-6 bg-surface border border-border rounded-2xl hover:border-accent/30 hover:bg-accent/[0.02] transition-all duration-500 hover-lift">
+                <div className="group p-5 lg:p-6 bg-surface border border-border shadow-sm hover:shadow-md rounded-2xl hover:border-accent/30 hover:bg-accent/[0.02] transition-all duration-500 hover-lift">
                   <p className="text-3xl lg:text-4xl font-bold tracking-tighter text-foreground mb-1 group-hover:text-accent transition-colors duration-300">
                     <CountUp value={stat.value} />
                   </p>

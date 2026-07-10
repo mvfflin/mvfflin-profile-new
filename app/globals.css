@@ -3,21 +3,21 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #f5f4f0;
-  --foreground: #0f0f0e;
-  --surface: #f5f4f0;
-  --muted: #6b6b65;
-  --accent: #0048ff;
-  --border: #e5e4e0;
+  --background: #fafafa;
+  --foreground: #27272a;
+  --surface: #ffffff;
+  --muted: #71717a;
+  --accent: #6366f1;
+  --border: #e4e4e7;
 }
 
 .dark {
-  --background: #0c0c0b;
-  --foreground: #f5f4f0;
-  --surface: #141413;
-  --muted: #9b9b93;
-  --accent: #316bff;
-  --border: #262625;
+  --background: #09090b;
+  --foreground: #f4f4f5;
+  --surface: #18181b;
+  --muted: #a1a1aa;
+  --accent: #818cf8;
+  --border: #27272a;
 }
 
 @theme inline {
