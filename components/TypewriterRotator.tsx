@@ -48,7 +48,7 @@ export default function TypewriterRotator({
         setIsDeleting(false);
         setLoopNum(loopNum + 1);
         setTypingSpeedState(typingSpeed);
-        // Small pause before typing the next word
+
         timer = setTimeout(() => {}, 500);
         return;
       }
@@ -61,7 +61,7 @@ export default function TypewriterRotator({
     return () => clearTimeout(timer);
   }, [displayedText, isDeleting, loopNum, texts, typingSpeed, deletingSpeed, delayBetweenTexts, typingSpeedState]);
 
-  // Determine if cursor should blink (when paused) or be solid (when typing/deleting)
+
   const isPaused = !isDeleting && displayedText === texts[loopNum % texts.length];
 
   return (

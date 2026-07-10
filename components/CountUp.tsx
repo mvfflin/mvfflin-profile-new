@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 interface CountUpProps {
   value: string;
-  duration?: number; // in ms
+  duration?: number;
 }
 
 export default function CountUp({ value: rawValue, duration = 1500 }: CountUpProps) {
@@ -12,7 +12,7 @@ export default function CountUp({ value: rawValue, duration = 1500 }: CountUpPro
   const [hasStarted, setHasStarted] = useState(false);
   const elementRef = useRef<HTMLSpanElement>(null);
 
-  // Parse the raw value, e.g. "~6" => prefix: "~", num: 6, suffix: ""
+
   const match = rawValue.match(/^([^\d]*)(\d+)([^\d]*)$/);
   const isParsable = !!match;
   const prefix = match ? match[1] : "";
@@ -46,7 +46,7 @@ export default function CountUp({ value: rawValue, duration = 1500 }: CountUpPro
       if (!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / duration, 1);
       
-      // Easing: easeOutQuad
+
       const easeProgress = progress * (2 - progress);
       
       const currentValue = Math.floor(easeProgress * endValue);

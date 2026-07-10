@@ -29,7 +29,7 @@ export default function ThemeProvider({
 }) {
   const [isDark, setIsDark] = useState(false);
 
-  // Load saved theme on mount
+
   useEffect(() => {
     const saved = localStorage.getItem("theme");
     let isDarkTheme = false;
@@ -41,7 +41,7 @@ export default function ThemeProvider({
       isDarkTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
     }
 
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+
     setIsDark(isDarkTheme);
 
     if (isDarkTheme) {
@@ -61,13 +61,13 @@ export default function ThemeProvider({
         localStorage.setItem("theme", newIsDark ? "dark" : "light");
       };
 
-      // Fallback for browsers that don't support View Transitions API
+
       if (!document.startViewTransition || !e) {
         switchTheme();
         return;
       }
 
-      // Get click coordinates for the circular animation origin
+
       const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
       const x = rect.left + rect.width / 2;
       const y = rect.top + rect.height / 2;

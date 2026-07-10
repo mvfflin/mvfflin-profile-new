@@ -25,7 +25,7 @@ export default function TypewriterText({
   const [hasStarted, setHasStarted] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
 
-  // Intersection Observer to trigger when element is in viewport
+
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -43,7 +43,7 @@ export default function TypewriterText({
     return () => observer.disconnect();
   }, [hasStarted]);
 
-  // Typewriter effect
+
   useEffect(() => {
     if (!hasStarted) return;
 

@@ -1,12 +1,19 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import ScrollReveal from "@/components/ScrollReveal";
 import TypewriterText from "@/components/TypewriterText";
+import Image from "next/image";
+
+const FloatingShapes = dynamic(() => import("./FloatingShapes"), {
+  ssr: false,
+  loading: () => <div className="absolute inset-0 bg-transparent" />,
+});
 
 const skills = [
   {
     name: "JavaScript / TypeScript",
-    level: 90,
+    level: 95,
     icons: [
       { src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg", alt: "JavaScript" },
       { src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg", alt: "TypeScript" },
@@ -14,7 +21,7 @@ const skills = [
   },
   {
     name: "React / Next.js",
-    level: 85,
+    level: 90,
     icons: [
       { src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg", alt: "React" },
       { src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg", alt: "Next.js", className: "dark:invert" },
@@ -22,7 +29,7 @@ const skills = [
   },
   {
     name: "Node.js",
-    level: 80,
+    level: 85,
     icons: [
       { src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg", alt: "Node.js" },
     ],
@@ -53,12 +60,12 @@ const skills = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-20 bg-surface">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section id="skills" className="py-20 bg-surface relative overflow-hidden">
+      <FloatingShapes />
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="max-w-3xl mx-auto">
           <ScrollReveal>
             <div className="flex items-center gap-3 mb-4">
-              <div className="h-px w-12 bg-accent"></div>
               <p className="text-xs font-semibold tracking-[0.3em] uppercase text-muted">
                 Tech Stacks
               </p>
@@ -67,12 +74,12 @@ export default function Skills() {
 
           <ScrollReveal delay={100}>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-4 leading-tight">
-              <TypewriterText text="My tech stacks" speed={40} delay={200}>
+              <TypewriterText text="Tools I work with" speed={40} delay={200}>
                 <span className="text-accent">.</span>
               </TypewriterText>
             </h2>
             <p className="text-base text-muted mb-10">
-              List of technologies and tools that I have experience with.
+              These are the technologies I use daily and feel comfortable with.
             </p>
           </ScrollReveal>
 
@@ -84,11 +91,13 @@ export default function Skills() {
                     <span className="flex items-center gap-2.5 text-foreground tracking-wide">
                       <span className="flex items-center gap-1.5">
                         {skill.icons.map((icon) => (
-                          <img
+                          <Image
                             key={icon.alt}
                             src={icon.src}
                             alt={icon.alt}
                             title={icon.alt}
+                            width={20}
+                            height={20}
                             className={`w-4 h-4 md:w-5 md:h-5 ${icon.className || ""}`}
                           />
                         ))}
@@ -120,6 +129,9 @@ export default function Skills() {
                   </span>
                 ),
               )}
+              <span className="px-5 py-2.5 text-sm text-muted italic cursor-default">
+                ...and still exploring
+              </span>
             </div>
           </ScrollReveal>
         </div>

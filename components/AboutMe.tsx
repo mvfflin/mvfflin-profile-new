@@ -3,25 +3,19 @@
 import ScrollReveal from "@/components/ScrollReveal";
 import TypewriterText from "@/components/TypewriterText";
 import CountUp from "@/components/CountUp";
+import Image from "next/image";
 
 const stats = [
   {
     value: "~6",
-    label: "Years experience",
-    desc: "Starts coding since 2020"
+    label: "Years coding",
+    desc: "Started messing with code in 2020",
   },
   {
     value: "+10",
-    label: "Projects",
-    desc: "I have worked on"
+    label: "Projects built",
+    desc: "From small experiments to real apps",
   }
-  // {
-  //   value: "20+",
-  //   label: "Proyek Selesai",
-  //   desc: "Dari konsep hingga deployed",
-  // },
-  // { value: "15+", label: "Klien Puas", desc: "Kepercayaan yang berkelanjutan" },
-  // { value: "10+", label: "Teknologi", desc: "Toolset yang dikuasai" },
 ];
 
 export default function AboutMe() {
@@ -32,9 +26,8 @@ export default function AboutMe() {
           <div>
             <ScrollReveal>
               <div className="flex items-center gap-3 mb-4">
-                <div className="h-px w-12 bg-accent"></div>
                 <p className="text-xs font-semibold tracking-[0.3em] uppercase text-muted">
-                  About myself
+                  About me
                 </p>
               </div>
             </ScrollReveal>
@@ -50,25 +43,29 @@ export default function AboutMe() {
             <ScrollReveal delay={200}>
               <div className="space-y-4 text-muted leading-relaxed text-base">
                 <p>
-                  I&apos;m 18 years old, currently being a college student majoring
-                  in Informatics Engineering at Institut Teknologi Sepuluh
-                  Nopember. I have a strong passion for programming and
-                  technology, which has driven me to continuously learn and grow
-                  in the field of software development.
+                  I&apos;m an 18-year-old college student studying Informatics Engineering
+                  at <span className="text-foreground font-medium inline-flex items-center gap-2">Institut Teknologi Sepuluh Nopember <Image src="/its-logo.png" alt="ITS Logo" width={80} height={20} className="h-5 w-auto object-contain dark:brightness-200" draggable={false} /></span>.
+                  I build fast, seamless, efficient, and stable web experiences from front to back.
+                  Whether you need a website, an app, or just want to explore with me, feel free to reach out!
                 </p>
                 <p>
-                  I started my programming journey in 2020, when i was curious
-                  about how a game works. Then I tried to learn how to modify a
-                  game which now has evolved into a passion to be a full stack
-                  developer.
-                </p>
-                <p>
-                  I have experience working on various projects, from small
-                  personal projects to larger collaborative ones, which has
-                  helped me develop a strong foundation in both frontend and
-                  backend development.
+                  Also check out my friend which started our coding journey together since 2020.
                 </p>
               </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={300}>
+              <a href="https://willis.my.id" target="_blank" rel="noopener noreferrer" className="mt-8 p-4 rounded-xl bg-surface border border-border shadow-sm flex cursor-pointer items-center gap-4 hover:border-accent/40 hover:shadow-md transition-all duration-300 w-fit pr-8 group">
+                <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-foreground tracking-tight group-hover:text-accent transition-colors duration-300">@wls_rhtmn</p>
+                  <p className="text-[11px] text-muted font-medium">Building and exploring together since 2020</p>
+                </div>
+              </a>
             </ScrollReveal>
           </div>
 

@@ -3,6 +3,7 @@
 import ScrollReveal from "@/components/ScrollReveal";
 import TypewriterText from "@/components/TypewriterText";
 import TypewriterRotator from "@/components/TypewriterRotator";
+import Image from "next/image";
 
 export default function Hero() {
   return (
@@ -18,10 +19,10 @@ export default function Hero() {
         }}
       />
 
-      {/* Silhouette background */}
+
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div
-          className="hero-silhouette absolute -right-10 md:right-[5%] lg:right-[10%] bottom-0 w-[500px] h-[600px] md:w-[550px] md:h-[700px] lg:w-[650px] lg:h-[800px]"
+          className="hero-silhouette absolute -right-6 md:right-0 top-0 md:top-auto md:bottom-0 w-[85vw] md:w-[550px] lg:w-[650px] h-[80vh] md:h-[700px] lg:h-[800px] max-w-[450px] md:max-w-none"
           style={{
             maskImage:
               "linear-gradient(to top, transparent 0%, black 15%), linear-gradient(to right, transparent 0%, black 20%)",
@@ -31,12 +32,15 @@ export default function Hero() {
             WebkitMaskComposite: "source-in",
           }}
         >
-          <img
-            src="/image.png"
+          <Image
+            src="/myself.jpg"
             alt=""
             aria-hidden="true"
-            className="w-full h-full object-cover object-top select-none"
+            fill
+            sizes="(max-width: 768px) 85vw, (max-width: 1024px) 550px, 650px"
+            className="object-cover object-top select-none"
             draggable={false}
+            priority
           />
         </div>
       </div>
@@ -45,9 +49,8 @@ export default function Hero() {
         <div className="max-w-4xl">
           <ScrollReveal delay={0}>
             <div className="flex items-center gap-3 mb-5">
-              <div className="h-px w-12 bg-accent"></div>
-              <p className="text-xs font-semibold tracking-[0.3em] uppercase text-muted">
-                Hi, I&apos;m mvfflin, or my real name-
+              <p className="text-sm font-medium text-muted">
+                I&apos;m <span className="text-foreground font-semibold">mvfflin</span>, or my real name-
               </p>
             </div>
           </ScrollReveal>
@@ -58,15 +61,15 @@ export default function Hero() {
                 <span className="text-accent">.</span>
               </TypewriterText>
             </h1>
-            <h2 className="mb-5 text-lg font-semibold dark:bg-zinc-700 text-foreground bg-zinc-200 w-max px-2 rounded">
+            <h2 className="mb-5 text-lg font-semibold dark:bg-zinc-700 text-foreground bg-zinc-200 inline-block max-w-full px-2 rounded break-words">
               Fatihul Ihsan Ramadhan
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={300}>
             <p className="text-lg md:text-2xl font-medium text-foreground/90 mb-4 tracking-tight min-h-[1.75rem] md:min-h-[2rem]">
-              <TypewriterRotator 
-                texts={["Full Stack Developer", "Content Creator", "Tech Enthusiast"]} 
+              <TypewriterRotator
+                texts={["Full Stack Developer", "Content Creator", "Tech Enthusiast"]}
                 typingSpeed={50}
                 deletingSpeed={30}
                 delayBetweenTexts={2000}
@@ -76,9 +79,9 @@ export default function Hero() {
 
           <ScrollReveal delay={400}>
             <p className="text-base md:text-lg text-muted leading-relaxed mb-8 max-w-xl">
-              A dedicated person who is passionate about technology and
-              programming, always eager to learn and grow in the field of
-              software development.
+              I love turning ideas into real things on the internet. Whether it&apos;s
+              a web app, a game plugin, or just a fun side project — if it involves
+              code, I&apos;m probably excited about it. ☕
             </p>
           </ScrollReveal>
 
@@ -110,8 +113,7 @@ export default function Hero() {
                 className="group inline-flex items-center justify-center px-10 py-4 text-sm font-semibold text-foreground border border-border rounded-full hover:border-accent hover:text-accent transition-all duration-300"
               >
                 <span className="flex items-center gap-2">
-                  Contact Me
-                  <svg
+                  Contact Me <svg
                     className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
                     fill="none"
                     stroke="currentColor"
@@ -121,7 +123,7 @@ export default function Hero() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M14 5l7 7m0 0l-7 7m7-7H3"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
                     />
                   </svg>
                 </span>

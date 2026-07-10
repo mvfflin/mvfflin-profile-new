@@ -82,19 +82,17 @@ export default function ConsoleDrawer() {
       setLogs([]);
     } else if (cmd === 'help') {
       addLog({ id: Date.now() + 1, type: 'log', message: 'Commands: npm run dev | npm install | npm run build | clear', timestamp: Date.now() });
-    
-    // --- EASTER EGGS START ---
-    // You can add more easter egg commands here!
     } else if (cmd === 'whoami') {
-      addLog({ id: Date.now() + 1, type: 'log', message: 'Guest User (Level: Awesome Explorer)', timestamp: Date.now() });
+      addLog({ id: Date.now() + 1, type: 'log', message: 'You are my best friend', timestamp: Date.now() });
     } else if (cmd === 'sudo rm -rf /') {
       addLog({ id: Date.now() + 1, type: 'error', message: 'Permission denied. You have no power here! 😉', timestamp: Date.now() });
     } else if (cmd === 'secret') {
-      addLog({ id: Date.now() + 1, type: 'warn', message: '🥚 You found a secret easter egg! The cake is a lie.', timestamp: Date.now() });
+      addLog({ id: Date.now() + 1, type: 'warn', message: 'You are my secret, got the first easter egg, so cool', timestamp: Date.now() });
     } else if (cmd === 'coffee') {
-      addLog({ id: Date.now() + 1, type: 'log', message: '☕ Fetching virtual coffee... Enjoy!', timestamp: Date.now() });
-    // --- EASTER EGGS END ---
-      
+      addLog({ id: Date.now() + 1, type: 'log', message: '☕ Fetching virtual coffee...', timestamp: Date.now() });
+      setTimeout(() => {
+        addLog({ id: Date.now() + 2, type: 'success', message: 'Here is your coffee ☕, Enjoy!', timestamp: Date.now() });
+      }, 1000);
     } else {
       addLog({ id: Date.now() + 1, type: 'error', message: `Command not found: ${cmd}`, timestamp: Date.now() });
     }
@@ -165,15 +163,14 @@ export default function ConsoleDrawer() {
               {logs.map((log) => (
                 <div
                   key={log.id}
-                  className={`whitespace-pre-wrap break-words ${
-                    log.type === 'error'
-                      ? 'text-red-500 dark:text-red-400'
-                      : log.type === 'warn'
-                        ? 'text-yellow-600 dark:text-yellow-400'
-                        : log.type === 'success'
-                          ? 'text-emerald-500 dark:text-emerald-400'
-                          : 'text-muted'
-                  }`}
+                  className={`whitespace-pre-wrap break-words ${log.type === 'error'
+                    ? 'text-red-500 dark:text-red-400'
+                    : log.type === 'warn'
+                      ? 'text-yellow-600 dark:text-yellow-400'
+                      : log.type === 'success'
+                        ? 'text-emerald-500 dark:text-emerald-400'
+                        : 'text-muted'
+                    }`}
                 >
                   [{new Date(log.timestamp).toLocaleTimeString('en-US', { hour12: false })}] {log.message}
                 </div>

@@ -101,7 +101,7 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Floating Toggle Button when Collapsed (Desktop) */}
+
       <button
         onClick={() => toggleDesktopCollapse(false)}
         className={`hidden md:flex fixed top-6 left-6 z-[60] w-12 h-12 items-center justify-center rounded-2xl bg-white/60 dark:bg-black/60 backdrop-blur-xl border border-black/5 dark:border-white/5 transition-all duration-500 hover:scale-105 shadow-lg ${isDesktopCollapsed ? "translate-x-0 opacity-100" : "-translate-x-20 opacity-0 pointer-events-none"}`}

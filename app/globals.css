@@ -40,6 +40,13 @@ body {
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 4rem; /* For mobile header h-16 */
+}
+
+@media (min-width: 768px) {
+  html {
+    scroll-padding-top: 0;
+  }
 }
 
 ::selection {
@@ -361,3 +368,18 @@ html {
   z-index: 2;
 }
 
+/* ── Virtual Desk animations ── */
+@keyframes desk-float {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.4; }
+  50% { transform: translateY(-20px) scale(1.2); opacity: 0.8; }
+}
+
+@keyframes desk-fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes desk-slideUp {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}

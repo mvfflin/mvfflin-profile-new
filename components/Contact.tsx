@@ -29,7 +29,7 @@ export default function Contact() {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: "bc734dc8-283e-443d-a893-c432faf5c84a", // IMPORTANT: Replace with your Web3Forms access key
+          access_key: "bc734dc8-283e-443d-a893-c432faf5c84a",
           ...formData,
         }),
       });
@@ -54,7 +54,6 @@ export default function Contact() {
       <div className="max-w-5xl mx-auto px-6 lg:px-8">
         <ScrollReveal>
           <div className="flex items-center gap-3 mb-4">
-            <div className="h-px w-12 bg-accent"></div>
             <p className="text-xs font-semibold tracking-[0.3em] uppercase text-muted">
               Contact
             </p>
@@ -65,13 +64,13 @@ export default function Contact() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
             <div>
               <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-6 leading-tight">
-                <TypewriterText text="Let's discuss" speed={50} delay={200}>
-                  <span className="text-accent">.</span>
+                <TypewriterText text="Let's chat" speed={50} delay={200}>
+                  <span className="text-accent">!</span>
                 </TypewriterText>
               </h2>
               <p className="text-base text-muted leading-relaxed mb-8 max-w-md">
-                I&apos;m open to new opportunities, collaborations, or maybe just a
-                chat about tech and programming. Feel free to reach out!
+                Got an idea, a project, or just want to say hi? I&apos;d love to hear
+                from you. Don&apos;t be shy — drop me a message!
               </p>
 
               <div className="space-y-6">
@@ -119,43 +118,23 @@ export default function Contact() {
 
             <div>
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="block text-[11px] font-semibold tracking-[0.2em] uppercase text-muted mb-3"
-                    >
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-0 py-3 bg-transparent border-0 border-b border-border text-foreground placeholder:text-muted/50 focus:outline-none focus:border-accent transition-colors duration-300"
-                      placeholder="your name"
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-[11px] font-semibold tracking-[0.2em] uppercase text-muted mb-3"
-                    >
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-0 py-3 bg-transparent border-0 border-b border-border text-foreground placeholder:text-muted/50 focus:outline-none focus:border-accent transition-colors duration-300"
-                      placeholder="your email"
-                    />
-                  </div>
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="block text-[11px] font-semibold tracking-[0.2em] uppercase text-muted mb-3"
+                  >
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-0 py-3 bg-transparent border-0 border-b border-border text-foreground placeholder:text-muted/50 focus:outline-none focus:border-accent transition-colors duration-300"
+                    placeholder="your name"
+                  />
                 </div>
                 <div>
                   <label
@@ -246,7 +225,7 @@ export default function Contact() {
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
                 </span>
                 <span className="text-xs text-muted font-semibold tracking-widest uppercase">
-                  Available for collborations or hiring.
+                  Available for hire and collaborations.
                 </span>
               </div>
             </div>

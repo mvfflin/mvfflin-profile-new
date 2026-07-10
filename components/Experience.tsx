@@ -9,8 +9,20 @@ const experiences = [
     company: "Several Minecraft Server Companies",
     period: "2020 - Present",
     description:
-      "Maintaining and developing custom Minecraft servers using Java, creating unique gameplay experiences for players.",
+      "Developing seamless and stable minecraft server for a large scale community with continuous updates and unique plugins.",
   },
+  {
+    title: "Developed Simple Web Apps",
+    company: "Self-learn",
+    period: "2022 - 2024",
+    description: "This is where I explored basic web development and started building simple applications. It laid the foundation for my journey as a developer."
+  },
+  {
+    title: "Freelancing",
+    company: "Local Businesses and Mutuals",
+    period: "2024 - Present",
+    description: "Freelancing as a web developer for local businesses and my friends. Creating complex websites and web applications for their needs."
+  }
 ];
 
 export default function Experience() {
@@ -19,16 +31,15 @@ export default function Experience() {
       <div className="max-w-5xl mx-auto px-6 lg:px-8">
         <ScrollReveal>
           <div className="flex items-center gap-3 mb-4">
-            <div className="h-px w-12 bg-accent"></div>
             <p className="text-xs font-semibold tracking-[0.3em] uppercase text-muted">
-              Experiences
+              Experience
             </p>
           </div>
         </ScrollReveal>
 
         <ScrollReveal delay={100}>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-4 leading-tight">
-            <TypewriterText text="My journey" speed={50} delay={200}>
+            <TypewriterText text="My journey so far" speed={50} delay={200}>
               <span className="text-accent">.</span>
             </TypewriterText>
           </h2>
@@ -36,8 +47,7 @@ export default function Experience() {
 
         <ScrollReveal delay={200}>
           <p className="text-base text-muted mb-12 max-w-xl">
-            Every role that i have taken before and currently has contributed to
-            my growth.
+            Every experience shaped who I am as a developer. Here&apos;s what I&apos;ve been up to.
           </p>
         </ScrollReveal>
 

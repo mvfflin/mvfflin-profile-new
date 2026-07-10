@@ -3,6 +3,8 @@
 import { useState } from "react";
 import ScrollReveal from "@/components/ScrollReveal";
 import TypewriterText from "@/components/TypewriterText";
+import TiltCard from "@/components/TiltCard";
+import Image from "next/image";
 
 const projects = [
   {
@@ -21,7 +23,7 @@ const projects = [
     status: "live",
     year: 2025,
     featured: true,
-    image: "./legends-update.png",
+    image: "/legends-update.png",
   },
   {
     title: "Room Management",
@@ -39,7 +41,7 @@ const projects = [
     status: "live",
     year: 2026,
     featured: true,
-    image: "./room-management.png",
+    image: "/room-management.png",
   },
   {
     title: "Muffin Datastore",
@@ -68,7 +70,7 @@ export default function Projects() {
     ? archived
     : archived.filter((p) => p.tags.includes(selectedTag));
 
-  // Extract unique tags
+
   const allTags = ["All", ...Array.from(new Set(projects.flatMap((p) => p.tags)))];
 
   const statusColor = (s: string) => {
@@ -87,7 +89,6 @@ export default function Projects() {
       <div className="max-w-5xl mx-auto px-6 lg:px-8">
         <ScrollReveal>
           <div className="flex items-center gap-3 mb-4">
-            <div className="h-px w-12 bg-accent"></div>
             <p className="text-xs font-semibold tracking-[0.3em] uppercase text-muted">
               Projects
             </p>
@@ -97,17 +98,17 @@ export default function Projects() {
         <ScrollReveal delay={100}>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground leading-tight">
-              <TypewriterText text="Chosen Projects" speed={45} delay={200}>
+              <TypewriterText text="Things I've built" speed={45} delay={200}>
                 <span className="text-accent">.</span>
               </TypewriterText>
             </h2>
             <p className="text-sm text-muted max-w-sm md:text-right">
-              Some of my projects that I am proud of, showcasing my skills.
+              Here are some projects I&apos;m proud of. Each one taught me something new!
             </p>
           </div>
         </ScrollReveal>
 
-        {/* Tag Filters */}
+
         <ScrollReveal delay={150}>
           <div className="flex flex-wrap gap-2 mb-10">
             {allTags.map((tag) => (
@@ -135,65 +136,73 @@ export default function Projects() {
                   rel="noopener noreferrer"
                   className="group block h-full"
                 >
-                  <div className="project-card relative bg-surface border border-border shadow-sm hover:shadow-md rounded-2xl hover:border-accent/40 transition-all duration-500 overflow-hidden flex flex-col h-full">
-                    <div className="w-full aspect-video bg-background/50 border-b border-border relative overflow-hidden group-hover:bg-background/80 transition-colors duration-500">
-                      {project.image ? (
-                        <img src={project.image} alt={project.title} className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700" />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-muted/30">
-                          <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                          </svg>
-                        </div>
-                      )}
-                    </div>
-                    <div className="p-6 md:p-8 flex flex-col flex-1">
-                      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-3">
-                            <span
-                              className={`w-2 h-2 rounded-full ${statusColor(project.status)}`}
-                            ></span>
-                            <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-muted">
-                              {project.status} — {project.year}
-                            </span>
+                  <TiltCard className="relative h-full">
+                    <div className="project-card relative bg-surface border border-border shadow-sm hover:shadow-md rounded-2xl hover:border-accent/40 transition-all duration-500 overflow-hidden flex flex-col h-full">
+                      <div className="w-full aspect-video bg-background/50 border-b border-border relative overflow-hidden group-hover:bg-background/80 transition-colors duration-500">
+                        {project.image ? (
+                          <Image 
+                            src={project.image} 
+                            alt={project.title} 
+                            fill
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            className="object-cover group-hover:scale-105 transition-transform duration-700" 
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center text-muted/30">
+                            <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
                           </div>
-                          <h3 className="text-xl md:text-2xl font-bold tracking-tight text-foreground group-hover:text-accent transition-colors duration-300">
-                            {project.title}
-                          </h3>
-                        </div>
-                        <div className="flex items-center gap-1 text-sm font-semibold text-muted group-hover:text-foreground transition-colors duration-300 shrink-0">
-                          <span className="hidden md:inline">Detail</span>
-                          <svg
-                            className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M7 17L17 7M17 7H7M17 7v10"
-                            />
-                          </svg>
-                        </div>
+                        )}
                       </div>
-                      <p className="text-muted leading-relaxed mb-6 max-w-3xl flex-1 text-sm md:text-base">
-                        {project.description}
-                      </p>
-                      <div className="flex flex-wrap gap-2 mt-auto">
-                        {project.tags.map((tag) => (
+                      <div className="p-6 md:p-8 flex flex-col flex-1">
+                        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
+                          <div className="flex-1">
+                            <div className="flex items-center gap-3 mb-3">
+                              <span
+                                className={`w-2 h-2 rounded-full ${statusColor(project.status)}`}
+                              ></span>
+                              <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-muted">
+                                {project.status} — {project.year}
+                              </span>
+                            </div>
+                            <h3 className="text-xl md:text-2xl font-bold tracking-tight text-foreground group-hover:text-accent transition-colors duration-300">
+                              {project.title}
+                            </h3>
+                          </div>
+                          <div className="flex items-center gap-1 text-sm font-semibold text-muted group-hover:text-foreground transition-colors duration-300 shrink-0">
+                            <span className="hidden md:inline">Detail</span>
+                            <svg
+                              className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M7 17L17 7M17 7H7M17 7v10"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <p className="text-muted leading-relaxed mb-6 max-w-3xl flex-1 text-sm md:text-base">
+                          {project.description}
+                        </p>
+                        <div className="flex flex-wrap gap-2 mt-auto">
+                          {project.tags.map((tag) => (
                             <span
                               key={tag}
                               className="px-2.5 py-1 text-[11px] font-medium tracking-wide text-foreground bg-black/5 dark:bg-white/10 rounded-md"
                             >
-                            {tag}
-                          </span>
-                        ))}
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </TiltCard>
                 </a>
               </ScrollReveal>
             ))}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import ThemeProvider from "@/components/ThemeProvider";
+import Script from "next/script";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,12 +15,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://mvffin.my.id'),
   title: {
-    default: "Fatihul Ihsan Ramadhan (mvfflin) | Full Stack Developer",
+    default: "Fatihul Ihsan Ramadhan | Full Stack Developer",
     template: "%s | Fatihul Ihsan Ramadhan",
   },
   description:
-    "Portfolio website of Fatihul Ihsan Ramadhan (mvfflin) - Full Stack Developer, Content Creator, and Tech Enthusiast specializing in React, Next.js, TypeScript, and modern web technologies.",
+    "Full Stack Developer, Content Creator, and Tech Enthusiast specializing in React, Next.js, TypeScript, and modern web technologies with ~6 years of experience in programming world.",
   keywords: [
     "Fatihul Ihsan Ramadhan",
     "mvfflin",
@@ -44,20 +46,20 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: "Fatihul Ihsan Ramadhan (mvfflin) | Full Stack Developer",
+    title: "Fatihul Ihsan Ramadhan | Full Stack Developer",
     description:
-      "Explore the portfolio of Fatihul Ihsan Ramadhan, a passionate Full Stack Developer and Tech Enthusiast building modern web experiences.",
-    url: "https://mvffin.my.id", // Replace with your actual domain when deployed
-    siteName: "Fatihul Ihsan Ramadhan Portfolio",
+      "Full Stack Developer, Content Creator, and Tech Enthusiast specializing in React, Next.js, TypeScript, and modern web technologies with ~6 years of experience in programming world.",
+    url: "https://mvffin.my.id",
+    siteName: "Fatihul Ihsan Ramadhan",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Fatihul Ihsan Ramadhan (mvfflin) | Full Stack Developer",
+    title: "Fatihul Ihsan Ramadhan | Full Stack Developer",
     description:
-      "Explore the portfolio of Fatihul Ihsan Ramadhan, a passionate Full Stack Developer and Tech Enthusiast building modern web experiences.",
-    creator: "@mvfflin", // Replace with your actual Twitter handle if you have one
+      "Full Stack Developer, Content Creator, and Tech Enthusiast specializing in React, Next.js, TypeScript, and modern web technologies with ~6 years of experience in programming world.",
+    creator: "@mvfflin",
   },
   robots: {
     index: true,
@@ -84,7 +86,13 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <script
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+        <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+      </head>
+      <body className="min-h-full flex flex-col transition-all duration-500 md:ml-24">
+        <Script
+          id="theme-script"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               try {
@@ -100,8 +108,6 @@ export default function RootLayout({
             `,
           }}
         />
-      </head>
-      <body className="min-h-full flex flex-col transition-all duration-500 md:ml-24">
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
