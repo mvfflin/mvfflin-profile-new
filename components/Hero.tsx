@@ -22,7 +22,7 @@ export default function Hero() {
 
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div
-          className="hero-silhouette absolute -right-6 md:right-0 top-0 md:top-auto md:bottom-0 w-[85vw] md:w-[550px] lg:w-[650px] h-[80vh] md:h-[700px] lg:h-[800px] max-w-[450px] md:max-w-none"
+          className="hero-silhouette absolute -right-6 md:right-0 top-0 w-[85vw] md:w-[550px] lg:w-[650px] h-[80vh] md:h-[700px] lg:h-[800px] max-w-[450px] md:max-w-none"
           style={{
             maskImage:
               "linear-gradient(to top, transparent 0%, black 15%), linear-gradient(to right, transparent 0%, black 20%)",
