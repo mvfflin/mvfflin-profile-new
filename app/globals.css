@@ -2,6 +2,10 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+* {
+  cursor: none !important;
+}
+
 :root {
   --background: #fafafa;
   --foreground: #27272a;
