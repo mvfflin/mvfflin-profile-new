@@ -7,6 +7,7 @@ import Image from "next/image";
 
 const experiences = [
   {
+    logo: "",
     title: "Developing Minecraft Servers",
     company: "Several Minecraft Server Companies",
     period: "2020 - Present",
