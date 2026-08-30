@@ -16,9 +16,9 @@ const experiences = [
   },
   {
     title: "Developed Simple Web Apps",
-    company: "Self-learn",
+    company: "Self-Employed",
     period: "2022 - 2024",
-    description: "This is where I explored basic web development and started building simple applications. It laid the foundation for my journey as a developer."
+    description: "I explored basic web development and started building simple applications. It laid the foundation for my journey as a developer."
   },
   {
     title: "Freelancing",
@@ -26,6 +26,30 @@ const experiences = [
     period: "2024 - Present",
     description: "Freelancing as a web developer for local businesses and my friends. Creating complex websites and web applications for their needs."
   }
+];
+
+const organizations = [
+  {
+    title: "Head of Event Organizer",
+    company: "CINOTIC 2025",
+    period: "2025",
+    description: "Led the organizing committee for CINOTIC, a joint event between ICT and KIR, which featured five competition: News Reading, LCT MIPA (STEM Quiz), Roket Air (Water Rocket), Fast Typing, and Mobile Legends. I successfully led the team to achieve the event's desired objectives.",
+    logo: "/cinotic.jpg"
+  },
+  {
+    logo: "/ict_club.png",
+    title: "Vice President",
+    company: "ICT Club SMAN 5 Kota Bekasi",
+    period: "2025 - 2026",
+    description: "Leading an ICT Club in SMAN 5 Bekasi, spanning 4 technology divisions, including Software, Hardware, Multimedia, and Robotics. I consistently manage the ICT Club's core leadership team to ensure activities run smoothly and systematically, yielding successful results."
+  },
+  {
+    logo: "/ict_club.png",
+    title: "Software Manager",
+    company: "ICT Club SMAN 5 Kota Bekasi",
+    period: "2024 - 2025",
+    description: "Leading the software division of the ICT Club, responsible for developing, maintaining, and teaching software projects for the club and school."
+  },
 ];
 
 const education = [
@@ -46,9 +70,9 @@ const education = [
 ];
 
 export default function Experience() {
-  const [activeTab, setActiveTab] = useState<"journey" | "education">("journey");
+  const [activeTab, setActiveTab] = useState<"journey" | "education" | "organization">("journey");
 
-  const activeData = activeTab === "journey" ? experiences : education;
+  const activeData = activeTab === "journey" ? experiences : activeTab === "education" ? education : organizations;
 
   return (
     <section id="experience" className="py-20 bg-surface overflow-hidden">
@@ -84,7 +108,7 @@ export default function Experience() {
                 : "bg-background border border-border text-muted hover:text-foreground hover:border-muted/40"
                 }`}
             >
-              Journey
+              Experiences
             </button>
             <button
               onClick={() => setActiveTab("education")}
@@ -94,6 +118,15 @@ export default function Experience() {
                 }`}
             >
               Education
+            </button>
+            <button
+              onClick={() => setActiveTab("organization")}
+              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${activeTab === "organization"
+                ? "bg-accent text-accent-foreground shadow-lg shadow-accent/20"
+                : "bg-background border border-border text-muted hover:text-foreground hover:border-muted/40"
+                }`}
+            >
+              Organization
             </button>
           </div>
         </ScrollReveal>
@@ -126,7 +159,7 @@ export default function Experience() {
                         </div>
                         {item.logo && (
                           <div className="shrink-0 h-8 w-auto flex items-center justify-center bg-background/50 rounded-md p-1">
-                            <Image src={item.logo} alt={`${item.company} logo`} width={80} height={64} className="h-9 w-auto object-contain dark:brightness-200" draggable={false} />
+                            <Image src={item.logo} alt={`${item.company} logo`} width={80} height={64} className="h-9 w-auto object-contain" draggable={false} />
                           </div>
                         )}
                       </div>
