@@ -19,7 +19,6 @@ export default function Hero() {
         }}
       />
 
-
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div
           className="hero-silhouette absolute -right-6 md:right-0 top-0 w-[85vw] md:w-[550px] lg:w-[650px] h-[80vh] md:h-[700px] lg:h-[800px] max-w-[450px] md:max-w-none"
@@ -50,7 +49,9 @@ export default function Hero() {
           <ScrollReveal delay={0}>
             <div className="flex items-center gap-3 mb-5">
               <p className="text-sm font-medium text-muted">
-                I&apos;m <span className="text-foreground font-semibold">mvfflin</span>, or my real name-
+                I&apos;m{" "}
+                <span className="text-foreground font-semibold">mvfflin</span>,
+                or my real name-
               </p>
             </div>
           </ScrollReveal>
@@ -69,7 +70,11 @@ export default function Hero() {
           <ScrollReveal delay={300}>
             <p className="text-lg md:text-2xl font-medium text-foreground/90 mb-4 tracking-tight min-h-[1.75rem] md:min-h-[2rem]">
               <TypewriterRotator
-                texts={["Full Stack Developer", "Content Creator", "Tech Enthusiast"]}
+                texts={[
+                  "Full Stack Developer",
+                  "Content Creator",
+                  "Tech Enthusiast",
+                ]}
                 typingSpeed={50}
                 deletingSpeed={30}
                 delayBetweenTexts={2000}
@@ -79,9 +84,9 @@ export default function Hero() {
 
           <ScrollReveal delay={400}>
             <p className="text-base md:text-lg text-muted leading-relaxed mb-8 max-w-xl">
-              I love turning ideas into real things on the internet. Whether it&apos;s
-              a web app, a game plugin, or just a fun side project — if it involves
-              code, I&apos;m probably excited about it. ☕
+              I love turning ideas into real things on the internet. Whether
+              it&apos;s a web app, a game plugin, or just a fun side project —
+              if it involves code, I&apos;m probably excited about it. ☕
             </p>
           </ScrollReveal>
 
@@ -109,11 +114,33 @@ export default function Hero() {
                 </span>
               </a>
               <a
+                href="/cv_fatih.pdf"
+                className="btn-spin group inline-flex items-center justify-center px-10 py-4 text-sm font-semibold bg-foreground text-background rounded-full"
+              >
+                <span className="flex items-center gap-2">
+                  CV / Resume
+                  {/* <svg
+                    className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg> */}
+                </span>
+              </a>
+              <a
                 href="#contact"
                 className="group inline-flex items-center justify-center px-10 py-4 text-sm font-semibold text-foreground border border-border rounded-full hover:border-accent hover:text-accent transition-all duration-300"
               >
                 <span className="flex items-center gap-2">
-                  Contact Me <svg
+                  Contact Me{" "}
+                  <svg
                     className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
                     fill="none"
                     stroke="currentColor"
